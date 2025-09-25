@@ -1,0 +1,44 @@
+{
+  "name": "New Job Sep 24, 2025, 09:18 PM",
+  "email_notifications": {
+    "no_alert_for_skipped_runs": false
+  },
+  "webhook_notifications": {},
+  "timeout_seconds": 0,
+  "max_concurrent_runs": 1,
+  "tasks": [
+    {
+      "task_key": "Raw_to_Bronze",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/joao.p.m.rodrigues10@gmail.com/Databricks/Alura/Databricks-criando-e-orquestrando-pipelines-na-nuvem/notebooks/raw_to_bronze",
+        "source": "WORKSPACE"
+      },
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Bronze_to_Silver",
+      "depends_on": [
+        {
+          "task_key": "Raw_to_Bronze"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/Users/joao.p.m.rodrigues10@gmail.com/Databricks/Alura/Databricks-criando-e-orquestrando-pipelines-na-nuvem/notebooks/bronze_to_silver",
+        "source": "WORKSPACE"
+      },
+      "timeout_seconds": 0,
+      "email_notifications": {}
+    }
+  ],
+  "queue": {
+    "enabled": true
+  },
+  "performance_target": "PERFORMANCE_OPTIMIZED",
+  "run_as": {
+    "user_name": "joao.p.m.rodrigues10@gmail.com"
+  }
+}
